@@ -6,7 +6,7 @@
 
 * [X] **[RF-1.1]** El sistema debe ser una herramienta CLI funcional ejecutable mediante la terminal.
 * [X] **[RF-1.2]** Debe aceptar las banderas: `--length` (int, por defecto 12), `--no-digits` (bool), `--no-special` (bool).
-* [ ] **[RF-1.3]** Validar que `--length` esté en un rango de 8 a 64; abortar en `stderr` si no cumple.
+* [X] **[RF-1.3]** Validar que `--length` esté en un rango de 8 a 64; abortar en `stderr` si no cumple.
 * [ ] **[RF-1.4]** El output limpio debe enviarse a `stdout` para permitir redirección de comandos (`> out.txt`).
 
 ### 🛠️ Objetivos Técnicos (Conceptos a dominar)

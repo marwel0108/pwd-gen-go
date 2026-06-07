@@ -1,8 +1,10 @@
 package main
 
 import (
-	"os"
 	"fmt"
+	"log"
+	"os"
+
 	"github.com/spf13/cobra"
 )
 
@@ -27,9 +29,17 @@ func generatePassword(cmd *cobra.Command, args []string) {
 	fmt.Printf("Length: %v\n", length)
 	fmt.Printf("No digits: %t\n", noDigits)
 	fmt.Printf("No special chars: %t\n", noSpecial)
+
+	if length < 8 || length > 64 {
+		log.Fatalf("Length must be between 8 and 64")
+	}
 }
 
 func main() {
+
+	b := &length;
+
+	fmt.Printf("address of lenght: %v\n", b)
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)

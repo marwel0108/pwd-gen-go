@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"math/rand"
@@ -21,7 +22,7 @@ var special = []rune("!@#$%^&*()-_=+[]{}|;:',.<>/?`~\"\\")
 
 var rootCmd = &cobra.Command{
 	Use: "pwd-gen",
-	Run: generatePassword,
+	Run: run,
 }
 
 func init() {
@@ -30,13 +31,14 @@ func init() {
 	rootCmd.Flags().BoolVarP(&noSpecial, "no-special", "s", false, "Defines whether ot not the generated password will contain special characters")
 }
 
-func generatePassword(cmd *cobra.Command, args []string) {
+func generatePassword() (generatedPassword string, err error) {
+
 
 	if length < 8 || length > 64 {
-		log.Fatalf("Length must be between 8 and 64")
+		return "", errors.New("Length must be between 8 and 64")
 	}
 
-	genPassword := make([]rune, 0, length)
+	genPasswordRuneSlice := make([]rune, 0, length)
 
 	var setsPermitidos [][]rune
 	setsPermitidos = append(setsPermitidos, alphabet)
@@ -48,15 +50,26 @@ func generatePassword(cmd *cobra.Command, args []string) {
 		setsPermitidos = append(setsPermitidos, special)
 	}
 
-	for len(genPassword) < length {
+	for len(genPasswordRuneSlice) < length {
 		setElegido := setsPermitidos[rand.Intn(len(setsPermitidos))]
 		
 		charCandidate := setElegido[rand.Intn(len(setElegido))]
 		
-		genPassword = append(genPassword, charCandidate)
+		genPasswordRuneSlice = append(genPasswordRuneSlice, charCandidate)
 	}
 
-	fmt.Println(string(genPassword))
+	return string(genPasswordRuneSlice), err
+}
+
+func run(cmd *cobra.Command, args []string) {
+
+	generatedPassword, err := generatePassword()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(generatedPassword)
 
 }
 

@@ -14,7 +14,8 @@
 * [X] Inicialización del entorno con `go mod init`.
 * [X] Implementación de la librería externa `github.com/spf13/cobra`.
 * [X] Uso de un slice de runas (`[]rune`) en lugar de strings crudos para asegurar soporte UTF-8.
-* [ ] Retorno explícito de errores con el patrón de firmas `func (args) (string, error)`.
+* [X] Retorno explícito de errores con el patrón de firmas `func (args) (string, error)`.
+* [ ] Definir un makefile simple para hacer el proceso de `build` y `exec` más rápido. 
 
 ### 🏁 Definition of Done (DoD)
 
